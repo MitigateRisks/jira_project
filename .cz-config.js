@@ -1,19 +1,21 @@
 module.exports = {
   //可选类型
   types: [
-    { value: 'feat', name: 'feat:   新功能' },
-    { value: 'fix', name: 'fix:   修复' },
-    { value: 'docs', name: 'docs:   文档变更' },
-    { value: 'style', name: 'style:   代码格式(不影响代码运行的变动)' },
+    { value: 'feat', name: 'feat:  新功能、新特性' },
+    { value: 'fix', name: 'fix:    修改bug' },
+    { value: 'docs', name: 'docs:   文档修改' },
+    { value: 'style', name: 'style:   代码格式修改，注意不是 css 修改 (例如分号修改)' },
+    { value: 'ci', name: 'ci:   持续集成相关文件修改' },
+    { value: 'workflow', name: 'workflow:   工作流相关文件修改' },
     {
       value: 'refactor',
-      name: 'refactor:   重构(既不是增加feature,也不是修复bug)'
+      name: 'refactor:   代码重构(重构，在不影响代码内部行为、功能下的代码修改)'
     },
-    { value: 'pref', name: 'pref:   性能优化' },
-    { value: 'test', name: 'test:   增加测试' },
-    { value: 'chore', name: 'chore:   构建过程或辅助工具的变动' },
-    { value: 'revert', name: 'revert:   回退' },
-    { value: 'build', name: 'build:   打包' },
+    { value: 'pref', name: 'pref:   更改代码提升性能(在不影响代码内部行为的前提下，对程序性能进行优化)' },
+    { value: 'test', name: 'test:   测试用例新增、修改' },
+    { value: 'chore', name: 'chore:   其他修改(不在上述类型中的修改)' },
+    { value: 'revert', name: 'revert:   恢复上一次提交' },
+    { value: 'build', name: 'build:   影响项目构建或依赖项修改' },
   ],
   //步骤
   messages: {
