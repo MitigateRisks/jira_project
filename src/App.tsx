@@ -1,14 +1,13 @@
+/* eslint-disable react/react-in-jsx-scope */
 // import React from 'react';
 // import logo from './logo.svg';
-import './App.css';
-import { ProjectListScreen } from './screens/project-list';
+import "./App.css"
+import ProjectListScreen from "./screens/project-list"
 
-function App() {
-  return (
-    <div className="App">
-      <ProjectListScreen />
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <ProjectListScreen />
+  </div>
+)
 
-export default App;
+export default App
