@@ -1,0 +1,236 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:import/recommended",
+    // "plugin:import/typescript",
+    "plugin:promise/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+    // "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "no-underscore-dangle": "off",
+    "no-unused-vars": [
+      "off",
+      {
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "res|next|^err"
+      }
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all"
+      }
+    ],
+    "no-shadow": [
+      "off",
+      {
+        "hoist": "all",
+        "allow": ["resolve", "reject", "done", "next", "err", "error"]
+      }
+    ],
+    "radix": "error",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTaggedTemplates": true
+      }
+    ],
+
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+
+    "func-names": ["error", "never"],
+    "arrow-body-style": ["warn", "as-needed"],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "default-param-last": "off",
+    "consistent-return": "off",
+    "no-return-assign": ["error", "except-parens"],
+
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
+    ],
+    "no-multi-spaces": "error",
+
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
+
+    "no-await-in-loop": "error",
+    "no-debugger": "error",
+    "no-alert": "error",
+    "no-console": "warn",
+
+    "max-len": "off",
+
+    "import": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.*", "**/.storybook/**/*.*"],
+        "peerDependencies": true
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "json": "always",
+        "ts": "never",
+        "tsx": "never",
+        "less": "never "
+      }
+    ],
+    "import/prefer-default-export": "warn",
+    "import/no-unresolved": "off",
+
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".mdx"]
+      }
+    ],
+
+    "react/jsx-pascal-case": ["error"],
+
+    "react/react-in-jsx-scope": "error",
+
+    "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
+
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "error",
+    "react/jsx-boolean-value": ["error", "never"],
+
+    "react/no-string-refs": ["error", { "noTemplateLiterals": true }],
+
+    "react/self-closing-comp": "error",
+
+    "react/jsx-curly-spacing": [
+      "off",
+      { "when": "never", "allowMultiline": false, "chidren": true }
+    ],
+    "react/jsx-tag-spacing": [
+      "error",
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "allow"
+      }
+    ],
+
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+
+    "jsx-a11y/accessible-emoji": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "assert": "either"
+      }
+    ],
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "warn",
+      {
+        "aspects": ["invalidHref"]
+      }
+    ],
+
+    // use React.FC to lint type of  defautlProps instead of using react/prop-types
+    "react/prop-types": "off", // Since we do not use prop-types
+    "react/require-default-props": "off", // Since we do not use prop-types
+
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "none",
+        "singleQuote": false,
+        "printWidth": 80,
+        "endOfLine": "auto"
+      }
+    ],
+
+    "no-void": ["error", { "allowAsStatement": true }],
+
+    "@typescript-eslint/no-floating-promises": [
+      "warn",
+      {
+        "ignoreVoid": true,
+        "ignoreIIFE": true
+      }
+    ],
+    "@typescript-eslint/no-extra-semi": "warn"
+  },
+  "plugins": [
+    "import",
+    "promise",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {},
+      "webpack": {}
+    }
+  }
+}
