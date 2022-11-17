@@ -1,6 +1,23 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
-const SearchPanel = ({ users, param, setParam }) => (
+export interface User {
+  id: string
+  name: string
+  email: string
+  title: string
+  organization: string
+}
+
+interface SearchPanelProps {
+  users: User[]
+  param: {
+    name: string
+    personId: string
+  }
+  setParam: (param: SearchPanelProps["param"]) => void
+}
+
+const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
   // from这里的action用不到
   <form>
     <div>
