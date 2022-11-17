@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
-import qs from "qs"
-import { cleanObject, useMout, useDebounce } from "utils"
+import * as qs from "qs"
+import { cleanObject, useMount, useDebounce } from "utils"
 import List from "./list"
 import SearchPanel from "./search-panel"
 
 // 引入数据请求地址
-const apiUrl = process.env.REACT_APP_API_URL
+const apiUrl = process.env.REACT_APP_API_URL || "null"
 
 const ProjectListScreen = () => {
   // 下拉框状态
@@ -19,7 +19,7 @@ const ProjectListScreen = () => {
   })
 
   //  debounceParam
-  const debounceParam = useDebounce(param, 700)
+  const debounceParam = useDebounce(param, 200)
 
   // 请求的数据
   const [list, setList] = useState([])
@@ -32,22 +32,24 @@ const ProjectListScreen = () => {
       .then(async (response) => {
         // 请求成功要把数据保存下来
         if (response.ok) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           setList(await response.json())
         }
-        return new Promise()
+        return undefined
       })
       .catch(() => 1)
   }, [debounceParam])
 
   // 初始化uesrs，用到userEffect，因为只渲染一次所以要加[]
-  useMout(() => {
+  useMount(() => {
     fetch(`${apiUrl}/users`)
       .then(async (response) => {
         // 请求成功要把数据保存下来
         if (response.ok) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           setUsers(await response.json())
         }
-        return new Promise()
+        return undefined
       })
       .catch(() => 1)
   })
