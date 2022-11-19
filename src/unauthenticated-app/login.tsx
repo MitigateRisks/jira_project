@@ -1,29 +1,8 @@
+import { useAuth } from "context/auth-context"
 import React, { FormEvent } from "react"
 
-const apiUrl = process.env.REACT_APP_API_URL || "null"
-
 const LoginScreen = () => {
-  // 执行登录的函数
-  const login = (param: { username: string; password: string }) => {
-    // 发送login请求
-    fetch(`${apiUrl}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(param)
-    })
-      // eslint-disable-next-line @typescript-eslint/require-await
-      .then(async (response: Response) => {
-        if (response.ok) {
-          console.log(response)
-        }
-        return undefined
-      })
-      .catch(() => {
-        throw new Error()
-      })
-  }
+  const { login } = useAuth()
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     // 阻止表单的默认行为
@@ -35,7 +14,9 @@ const LoginScreen = () => {
     // 所以我们告诉他，我知道我自己在干什么,告诉他是一个HTMLInputElement类型，听我的
     const username = (event.currentTarget.elements[0] as HTMLInputElement).value
     const password = (event.currentTarget.elements[1] as HTMLInputElement).value
-    login({ username, password })
+    login({ username, password }).catch(() => {
+      throw new Error()
+    })
   }
 
   return (

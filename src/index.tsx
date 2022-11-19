@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
 import { loadDevTools } from "jira-dev-tool"
+import { AppProviders } from "context"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 
@@ -9,7 +10,9 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 loadDevTools(() =>
   root.render(
     <React.StrictMode>
-      <App />
+      <AppProviders>
+        <App />
+      </AppProviders>
     </React.StrictMode>
   )
 )

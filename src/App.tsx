@@ -1,15 +1,16 @@
-/* eslint-disable react/react-in-jsx-scope */
-// import React from 'react';
-// import logo from './logo.svg';
-import LoginScreen from "screens/login"
+import React from "react"
 import "./App.css"
-// import ProjectListScreen from "./screens/project-list"
+import AuthenticatedApp from "authenticated-app"
+import { useAuth } from "context/auth-context"
+import UnauthenticatedApp from "unauthenticated-app"
 
-const App = () => (
-  <div className="App">
-    {/* <ProjectListScreen /> */}
-    <LoginScreen />
-  </div>
-)
+const App = () => {
+  const { user } = useAuth()
+  return (
+    <div className="App">
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </div>
+  )
+}
 
 export default App
