@@ -6,7 +6,8 @@ const AuthenticatedApp = () => {
   const { logout } = useAuth()
   return (
     <div>
-      <button type="button" onClick={() => logout}>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+      <button type="button" onClick={logout}>
         退出
       </button>
       <ProjectListScreen />
