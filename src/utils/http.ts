@@ -1,6 +1,7 @@
 import qs from "qs"
-import * as auth from "auth-provider"
+// eslint-disable-next-line import/no-cycle
 import { useAuth } from "context/auth-context"
+import * as auth from "auth-provider"
 
 const apiUrl = process.env.REACT_APP_API_URL || "null"
 
@@ -49,8 +50,6 @@ export const http = async (
       }
       // eslint-disable-next-line promise/no-return-wrap
       return Promise.reject(data)
-
-      throw new Error()
     })
 }
 

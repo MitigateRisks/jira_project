@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react"
-import * as qs from "qs"
 import { cleanObject, useMount, useDebounce } from "utils"
 import { useHttp } from "utils/http"
 import List from "./list"
 import SearchPanel from "./search-panel"
-
-// 引入数据请求地址
-const apiUrl = process.env.REACT_APP_API_URL || "null"
 
 const ProjectListScreen = () => {
   // 下拉框状态

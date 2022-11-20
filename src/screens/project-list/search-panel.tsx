@@ -1,4 +1,5 @@
 import React from "react"
+import { Input, Select } from "antd"
 
 export interface User {
   id: string
@@ -25,7 +26,7 @@ const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
       {/* 首先是一个input框，他的值param.name当他改变的时候，也就是onChange的时候，他的回调函数evt => setParam({...param,name: evt.target.value}) */}
 
       {/* 这句话等价于 setParam(Object.assign({},param,P{name:evt.target.value})) */}
-      <input
+      <Input
         type="text"
         value={param.name}
         onChange={(evt) =>
@@ -37,23 +38,23 @@ const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
       />
 
       {/* 下拉框 */}
-      <select
+      <Select
         value={param.personId}
-        onChange={(evt) =>
+        onChange={(value) =>
           setParam({
             ...param,
-            personId: evt.target.value
+            personId: value
           })
         }
       >
         {/* 这里要给option */}
-        <option value="">负责人</option>
+        <Select.Option value="">负责人</Select.Option>
         {users.map((user) => (
-          <option key={user.id} value={user.id}>
+          <Select.Option key={user.id} value={user.id}>
             {user.name}
-          </option>
+          </Select.Option>
         ))}
-      </select>
+      </Select>
     </div>
   </form>
 )
