@@ -1,5 +1,5 @@
 import React from "react"
-import { Input, Select } from "antd"
+import { Form, Input, Select } from "antd"
 
 export interface User {
   id: string
@@ -21,12 +21,12 @@ interface SearchPanelProps {
 
 const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
   // from这里的action用不到
-  <form>
-    <div>
+  <Form style={{ marginBottom: "2rem" }} layout="inline">
+    <Form.Item>
       {/* 首先是一个input框，他的值param.name当他改变的时候，也就是onChange的时候，他的回调函数evt => setParam({...param,name: evt.target.value}) */}
-
       {/* 这句话等价于 setParam(Object.assign({},param,P{name:evt.target.value})) */}
       <Input
+        placeholder="项目名"
         type="text"
         value={param.name}
         onChange={(evt) =>
@@ -36,7 +36,8 @@ const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
           })
         }
       />
-
+    </Form.Item>
+    <Form.Item>
       {/* 下拉框 */}
       <Select
         value={param.personId}
@@ -55,8 +56,8 @@ const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => (
           </Select.Option>
         ))}
       </Select>
-    </div>
-  </form>
+    </Form.Item>
+  </Form>
 )
 
 export default SearchPanel

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^11.10.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -15,6 +16,7 @@
     "@types/react-dom": "^18.0.8",
     "antd": "4.24.3",
     "craco-less": "^2.0.0",
+    "dayjs": "^1.11.6",
     "jira-dev-tool": "^1.7.61",
     "prettier": "^2.7.1",
     "qs": "^6.11.0",
