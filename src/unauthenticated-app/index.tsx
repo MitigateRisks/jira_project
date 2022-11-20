@@ -30,7 +30,7 @@ export const UnauthenticatedApp = () => {
   )
 }
 
-// emotion`
+// emotion
 
 export const LogButton = styled(Button)`
   width: 100%;
