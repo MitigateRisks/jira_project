@@ -1,19 +1,28 @@
 import { useAuth } from "context/auth-context"
 import React from "react"
-import { Form, Input, Button } from "antd"
+import { Form, Input } from "antd"
 // eslint-disable-next-line import/no-cycle
 import { LogButton } from "unauthenticated-app"
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ onError }: { onError: (error: Error) => void }) => {
   const { register } = useAuth()
 
-  const handleSubmit = (values: { username: string; password: string }) => {
+  const handleSubmit = ({
+    cpassword,
+    ...values
+  }: {
+    username: string
+    password: string
+    cpassword: string
+  }) => {
+    if (cpassword !== values.password) {
+      onError(new Error("请确认两次输入的密码相同"))
+      return
+    }
     // 这个values为什么是username string password string呢？
     // ant degin怎么知道我们想要这个值
     // 是因为这里它是由这个name属性来推断的
-    register(values).catch(() => {
-      throw new Error()
-    })
+    register(values).catch(onError)
   }
 
   return (
@@ -29,6 +38,12 @@ const RegisterScreen = () => {
         rules={[{ required: true, message: "请输入密码" }]}
       >
         <Input placeholder="密码" type="password" id="password" />
+      </Form.Item>
+      <Form.Item
+        name="cpassword"
+        rules={[{ required: true, message: "请确认密码" }]}
+      >
+        <Input placeholder="确认密码" type="password" id="cpassword" />
       </Form.Item>
       <Form.Item>
         <LogButton htmlType="submit" type="primary">

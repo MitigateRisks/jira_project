@@ -17,11 +17,12 @@
     "antd": "4.24.3",
     "craco-less": "^2.0.0",
     "dayjs": "^1.11.6",
-    "jira-dev-tool": "^1.7.61",
+    "jira-dev-tool": "^1.6.59",
     "prettier": "^2.7.1",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"

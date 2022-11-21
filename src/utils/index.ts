@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react"
 
-//
 export const isFals = (value: unknown) => (value === 0 ? false : !value)
 
+export const isVoid = (value: unknown) =>
+  value === undefined || value === null || value === ""
+
 // 在一个函数里，改变传入的对象本身是不好的
-export const cleanObject = (object: object) => {
+// [key:string]:unknown 就表示我想要一个这样的{name:'jack'}键值对,不要其他像这种()=>{}空的类型
+export const cleanObject = (object: { [key: string]: unknown }) => {
   const result = { ...object }
   Object.keys(result).forEach((key) => {
     // 涉及到泛型
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const value = result[key]
-    if (isFals(value)) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+    // 小bug，如果这个value为false,也会被删掉
+    // 如果传入的object是一个{checked:false}，按照这个逻辑，这个checked也会被删掉
+    // 解决：在新建一个isVoid函数
+    if (isVoid(value)) {
       delete result[key]
     }
   })
@@ -24,6 +25,7 @@ export const cleanObject = (object: object) => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback()
+    // 依赖项里加上callback会造成无线循环，这个和useCallback以及useMemo有关系
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
