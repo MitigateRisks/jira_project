@@ -20,18 +20,14 @@ export const login = (data: { username: string; password: string }) =>
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
+  }).then(async (response: Response) => {
+    if (response.ok) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      return handleUserResponse(await response.json())
+    }
+    // eslint-disable-next-line promise/no-return-wrap
+    return Promise.reject(await response.json())
   })
-    .then(async (response: Response) => {
-      if (response.ok) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        return handleUserResponse(await response.json())
-      }
-      // eslint-disable-next-line promise/no-return-wrap
-      return Promise.reject(data)
-    })
-    .catch(() => {
-      throw new Error()
-    })
 export const register = (data: { username: string; password: string }) =>
   fetch(`${apiUrl}/register`, {
     method: "POST",
@@ -39,19 +35,16 @@ export const register = (data: { username: string; password: string }) =>
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
+  }).then(async (response: Response) => {
+    if (response.ok) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      return handleUserResponse(await response.json())
+    }
+    // eslint-disable-next-line promise/no-return-wrap
+    return Promise.reject(await response.json())
   })
-    .then(async (response: Response) => {
-      if (response.ok) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        return handleUserResponse(await response.json())
-      }
-      // eslint-disable-next-line promise/no-return-wrap
-      return Promise.reject(data)
-    })
-    .catch(() => {
-      throw new Error()
-    })
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const logout = async () =>
+export const logout = async () => {
   window.localStorage.removeItem(localStorageKey)
+}
