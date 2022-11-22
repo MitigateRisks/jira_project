@@ -4,6 +4,8 @@ import { http } from "utils/http"
 import * as auth from "auth-provider"
 import { User } from "screens/project-list/search-panel"
 import { useMount } from "utils"
+import useAsync from "utils/use-asyonc"
+import { FullPageErrorFallback, FullPageLoading } from "components/lib"
 
 interface AuthForm {
   username: string
@@ -36,7 +38,17 @@ const AuthContext = React.createContext<
 AuthContext.displayName = "AuthContext"
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null)
+  const {
+    data: user,
+    error,
+    isLoading,
+    isIdle,
+    isError,
+    run,
+    setData: setUser
+  } = useAsync<User | null>(undefined, {
+    throwOnError: true
+  })
 
   // 函数式编程一个重要的的概念
   // point free
@@ -51,12 +63,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // 就把这个返回的data.user返回出来
   // 通过setUser赋值
   useMount(() => {
-    bootstrapUser()
-      .then(setUser)
-      .catch(() => {
-        throw new Error()
-      })
+    void run(bootstrapUser())
   })
+
+  if (isIdle || isLoading) {
+    return <FullPageLoading />
+  }
+
+  if (isError) {
+    return <FullPageErrorFallback error={error} />
+  }
 
   return (
     <AuthContext.Provider

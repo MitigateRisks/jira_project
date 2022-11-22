@@ -6,6 +6,10 @@ import logo from "assets/logo.svg"
 import left from "assets/left.svg"
 import right from "assets/right.svg"
 // eslint-disable-next-line import/no-cycle
+// import { Helmet } from "react-helmet"
+// eslint-disable-next-line import/no-cycle
+import { useDocumentTitle } from "utils"
+// eslint-disable-next-line import/no-cycle
 import RegisterScreen from "./register"
 // eslint-disable-next-line import/no-cycle
 import LoginScreen from "./login"
@@ -13,6 +17,8 @@ import LoginScreen from "./login"
 export const UnauthenticatedApp = () => {
   const [isRegister, setIsRegister] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+
+  useDocumentTitle("请登录或注册以继续")
 
   return (
     <Container>
