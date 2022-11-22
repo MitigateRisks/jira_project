@@ -8,7 +8,7 @@ import { LogButton } from "./index"
 
 const LoginScreen = ({ onError }: { onError: (error: Error) => void }) => {
   const { login } = useAuth()
-  const { run, isLoading } = useAsync()
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true })
 
   const handleSubmit = async (values: {
     username: string
@@ -22,6 +22,7 @@ const LoginScreen = ({ onError }: { onError: (error: Error) => void }) => {
       await run(login(values)).catch(onError)
       // await login(values).catch(onError)
     } catch (e) {
+      // console.log(e)
       throw new Error()
     }
   }

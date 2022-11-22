@@ -3,9 +3,11 @@ import React from "react"
 import { Form, Input } from "antd"
 // eslint-disable-next-line import/no-cycle
 import { LogButton } from "unauthenticated-app"
+import useAsync from "utils/use-asyonc"
 
 const RegisterScreen = ({ onError }: { onError: (error: Error) => void }) => {
   const { register } = useAuth()
+  const { run, isLoading } = useAsync(undefined, { throwOnError: true })
 
   const handleSubmit = ({
     cpassword,
@@ -22,7 +24,7 @@ const RegisterScreen = ({ onError }: { onError: (error: Error) => void }) => {
     // 这个values为什么是username string password string呢？
     // ant degin怎么知道我们想要这个值
     // 是因为这里它是由这个name属性来推断的
-    register(values).catch(onError)
+    run(register(values)).catch(onError)
   }
 
   return (
@@ -46,7 +48,7 @@ const RegisterScreen = ({ onError }: { onError: (error: Error) => void }) => {
         <Input placeholder="确认密码" type="password" id="cpassword" />
       </Form.Item>
       <Form.Item>
-        <LogButton htmlType="submit" type="primary">
+        <LogButton loading={isLoading} htmlType="submit" type="primary">
           注册
         </LogButton>
       </Form.Item>
